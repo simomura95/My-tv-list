@@ -56,25 +56,27 @@ const HomeAuth = () => {
       <div className='container py-5'>
         {isLoading && <LoadingElement />}
         {error && <ErrorElement error={error} />}
-        {watchlist && !error && !isLoading && <div>
-          <div className='d-flex flex-sm-row flex-column gap-3'>
-            <AddMovieButton />
-            <FilterButton 
-              filterTitle={filterTitle}
-              setFilterTitle={setFilterTitle}
-              orderBy={orderBy}
-              setOrderBy={setOrderBy}
-              orderDirection={orderDirection}
-              setOrderDirection={setOrderDirection}            
-            />
-          </div>
+        {watchlist && !error && !isLoading && 
+          <div>
+            <div className='d-flex flex-sm-row flex-column gap-3'>
+              <AddMovieButton />
+              { watchlist.length > 0 && <FilterButton 
+                filterTitle={filterTitle}
+                setFilterTitle={setFilterTitle}
+                orderBy={orderBy}
+                setOrderBy={setOrderBy}
+                orderDirection={orderDirection}
+                setOrderDirection={setOrderDirection}            
+              /> }
+            </div>
 
-          {/* Watch list */}
-          <div className="d-flex flex-column gap-3 mt-3 text-center text-sm-start">
-            <span className="lead ">Click on a movie to view and edit it</span>
-            {watchlist.map(movieEntry)}
-          </div>
-        </div>}
+            {/* Watch list */}
+            { watchlist.length > 0 &&
+              <div className="d-flex flex-column gap-3 mt-3 text-center text-sm-start">
+               <span className="lead ">Click on a movie to view and edit it</span>
+              {watchlist.map(movieEntry)}
+            </div> }
+          </div>}
       </div>
     )
   }
